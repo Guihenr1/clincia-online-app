@@ -5,11 +5,12 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Button", () => {
   test("renders the button", () => {
     const buttonText = "Click me";
-    const { getByText } = render(<Button>{buttonText}</Button>);
+    const { container } = render(<Button>{buttonText}</Button>);
 
-    expect(screen.getByRole("button")).toHaveTextContent(/Click me/);
-    const buttonElement = getByText(buttonText);
-    expect(buttonElement).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: `${buttonText}` })
+    ).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   test("calls onClick function when clicked", () => {
