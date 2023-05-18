@@ -1,9 +1,7 @@
 import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()(() => ({
-  button: {
-    color: "black",
-  },
+  button: {},
 }));
 
 export default useStyles;
