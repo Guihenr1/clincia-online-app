@@ -3,7 +3,6 @@ import useStyles from "./styles";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 interface TableProps {
-  children: ReactNode;
   columns: GridColDef[];
   rows: Object[];
 }

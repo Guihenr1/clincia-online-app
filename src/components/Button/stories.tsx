@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { Meta } from "@storybook/react";
 import Button from "./Button";
+import BugReportIcon from "@mui/icons-material/BugReport";
 
 function onClick(e: MouseEvent<HTMLButtonElement>): void {
   console.log("CLICKED", e);
@@ -13,8 +14,14 @@ export default {
   },
 } as Meta;
 
-export const Primary = (args: any) => <Button {...args} />;
+export const Default = (args: any) => <Button {...args} />;
+export const Icon = (args: any) => <Button {...args} />;
 
-Primary.args = {
+Default.args = {
   children: "Button",
+};
+
+Icon.args = {
+  children: <BugReportIcon />,
+  title: "Bug Report",
 };

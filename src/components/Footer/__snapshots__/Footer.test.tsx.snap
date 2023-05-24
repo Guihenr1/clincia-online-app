@@ -3,7 +3,7 @@
 exports[`Footer renders the Footer 1`] = `
 <div>
   <div
-    class="MuiBox-root css-38qcwg-footer"
+    class="MuiBox-root css-nwvu2n-footer"
   >
     @2023 Clinica Online
   </div>
