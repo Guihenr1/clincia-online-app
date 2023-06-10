@@ -6,7 +6,7 @@ exports[`Table renders the Table 1`] = `
     style="height: 400px; width: 100%;"
   >
     <div
-      aria-colcount="4"
+      aria-colcount="3"
       aria-multiselectable="false"
       aria-rowcount="10"
       class="MuiDataGrid-root MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor css-12u49z-MuiDataGrid-root"
@@ -31,10 +31,10 @@ exports[`Table renders the Table 1`] = `
             >
               <div
                 aria-colindex="1"
-                aria-label="ID"
+                aria-label="First name"
                 aria-sort="none"
                 class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
-                data-field="id"
+                data-field="firstName"
                 role="columnheader"
                 style="height: 56px; width: 0px; min-width: 0; max-width: 0;"
                 tabindex="0"
@@ -54,7 +54,7 @@ exports[`Table renders the Table 1`] = `
                         class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                         data-mui-internal-clone-element="true"
                       >
-                        ID
+                        First name
                       </div>
                     </div>
                     <div
@@ -133,10 +133,10 @@ exports[`Table renders the Table 1`] = `
               </div>
               <div
                 aria-colindex="2"
-                aria-label="First name"
+                aria-label="Last name"
                 aria-sort="none"
                 class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
-                data-field="firstName"
+                data-field="lastName"
                 role="columnheader"
                 style="height: 56px; width: 0px; min-width: 0; max-width: 0;"
                 tabindex="-1"
@@ -156,7 +156,7 @@ exports[`Table renders the Table 1`] = `
                         class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                         data-mui-internal-clone-element="true"
                       >
-                        First name
+                        Last name
                       </div>
                     </div>
                     <div
@@ -235,10 +235,10 @@ exports[`Table renders the Table 1`] = `
               </div>
               <div
                 aria-colindex="3"
-                aria-label="Last name"
+                aria-label="Age"
                 aria-sort="none"
                 class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
-                data-field="lastName"
+                data-field="age"
                 role="columnheader"
                 style="height: 56px; width: 0px; min-width: 0; max-width: 0;"
                 tabindex="-1"
@@ -258,7 +258,7 @@ exports[`Table renders the Table 1`] = `
                         class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
                         data-mui-internal-clone-element="true"
                       >
-                        Last name
+                        Age
                       </div>
                     </div>
                     <div
@@ -364,23 +364,6 @@ exports[`Table renders the Table 1`] = `
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
                   data-colindex="0"
-                  data-field="id"
-                  role="cell"
-                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                  tabindex="-1"
-                >
-                  <div
-                    class="MuiDataGrid-cellContent"
-                    title="1"
-                  >
-                    1
-                  </div>
-                </div>
-                <div
-                  aria-colindex="2"
-                  aria-colspan="1"
-                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="1"
                   data-field="firstName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -394,10 +377,10 @@ exports[`Table renders the Table 1`] = `
                   </div>
                 </div>
                 <div
-                  aria-colindex="3"
+                  aria-colindex="2"
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="2"
+                  data-colindex="1"
                   data-field="lastName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -408,6 +391,23 @@ exports[`Table renders the Table 1`] = `
                     title="Snow"
                   >
                     Snow
+                  </div>
+                </div>
+                <div
+                  aria-colindex="3"
+                  aria-colspan="1"
+                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                  data-colindex="2"
+                  data-field="age"
+                  role="cell"
+                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                  tabindex="-1"
+                >
+                  <div
+                    class="MuiDataGrid-cellContent"
+                    title="35"
+                  >
+                    35
                   </div>
                 </div>
               </div>
@@ -425,23 +425,6 @@ exports[`Table renders the Table 1`] = `
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
                   data-colindex="0"
-                  data-field="id"
-                  role="cell"
-                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                  tabindex="-1"
-                >
-                  <div
-                    class="MuiDataGrid-cellContent"
-                    title="2"
-                  >
-                    2
-                  </div>
-                </div>
-                <div
-                  aria-colindex="2"
-                  aria-colspan="1"
-                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="1"
                   data-field="firstName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -455,10 +438,10 @@ exports[`Table renders the Table 1`] = `
                   </div>
                 </div>
                 <div
-                  aria-colindex="3"
+                  aria-colindex="2"
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="2"
+                  data-colindex="1"
                   data-field="lastName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -469,6 +452,23 @@ exports[`Table renders the Table 1`] = `
                     title="Lannister"
                   >
                     Lannister
+                  </div>
+                </div>
+                <div
+                  aria-colindex="3"
+                  aria-colspan="1"
+                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                  data-colindex="2"
+                  data-field="age"
+                  role="cell"
+                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                  tabindex="-1"
+                >
+                  <div
+                    class="MuiDataGrid-cellContent"
+                    title="42"
+                  >
+                    42
                   </div>
                 </div>
               </div>
@@ -486,23 +486,6 @@ exports[`Table renders the Table 1`] = `
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
                   data-colindex="0"
-                  data-field="id"
-                  role="cell"
-                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
-                  tabindex="-1"
-                >
-                  <div
-                    class="MuiDataGrid-cellContent"
-                    title="3"
-                  >
-                    3
-                  </div>
-                </div>
-                <div
-                  aria-colindex="2"
-                  aria-colspan="1"
-                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="1"
                   data-field="firstName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -516,10 +499,10 @@ exports[`Table renders the Table 1`] = `
                   </div>
                 </div>
                 <div
-                  aria-colindex="3"
+                  aria-colindex="2"
                   aria-colspan="1"
                   class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
-                  data-colindex="2"
+                  data-colindex="1"
                   data-field="lastName"
                   role="cell"
                   style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
@@ -530,6 +513,23 @@ exports[`Table renders the Table 1`] = `
                     title="Lannister"
                   >
                     Lannister
+                  </div>
+                </div>
+                <div
+                  aria-colindex="3"
+                  aria-colspan="1"
+                  class="MuiDataGrid-cell MuiDataGrid-cell--textLeft MuiDataGrid-withBorderColor"
+                  data-colindex="2"
+                  data-field="age"
+                  role="cell"
+                  style="min-width: 0; max-width: 0; min-height: 52px; max-height: 52px;"
+                  tabindex="-1"
+                >
+                  <div
+                    class="MuiDataGrid-cellContent"
+                    title="45"
+                  >
+                    45
                   </div>
                 </div>
               </div>

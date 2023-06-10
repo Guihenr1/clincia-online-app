@@ -38,16 +38,12 @@ const Base: FC<BaseProps> = ({ children }) => {
   const ReturnPage = (page: string) => {
     switch (page) {
       case "doctor":
-        console.log("1");
         return <Doctor />;
       case "patient":
-        console.log("2");
         return <Patient />;
       case "patner":
-        console.log("3");
         return <Patner />;
       default:
-        console.log("4");
         return <Doctor />;
     }
   };

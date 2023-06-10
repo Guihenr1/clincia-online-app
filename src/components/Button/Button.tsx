@@ -10,6 +10,15 @@ interface ButtonProps {
   variant?: "contained" | "outlined" | "text";
   isIconButton?: boolean;
   title?: string;
+  color?:
+    | "inherit"
+    | "warning"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info";
+  className?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -19,6 +28,8 @@ const Button: FC<ButtonProps> = ({
   variant,
   isIconButton,
   title,
+  color,
+  className,
 }) => {
   const s = useStyles();
 
@@ -44,8 +55,9 @@ const Button: FC<ButtonProps> = ({
           onClick={handleClick}
           disabled={disabled}
           variant={variant}
-          className={s.classes.button}
+          className={`${s.classes.button} ${className}`}
           title={title}
+          color={color}
         >
           {children}
         </ButtonMaterialUI>
@@ -59,6 +71,8 @@ Button.defaultProps = {
   variant: "contained",
   isIconButton: false,
   title: "",
+  color: "primary",
+  className: "",
 };
 
 export default Button;

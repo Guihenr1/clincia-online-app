@@ -24,4 +24,5 @@ Default.args = {
 Icon.args = {
   children: <BugReportIcon />,
   title: "Bug Report",
+  isIconButton: true,
 };

@@ -22,6 +22,9 @@ const Table: FC<TableProps> = ({ rows, columns }) => {
         }}
         pageSizeOptions={[5, 10]}
         disableRowSelectionOnClick
+        columnVisibilityModel={{
+          id: false,
+        }}
       />
     </div>
   );
