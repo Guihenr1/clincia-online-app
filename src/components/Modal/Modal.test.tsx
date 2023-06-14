@@ -5,11 +5,16 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Modal", () => {
   let open = true;
   const onClickClose = jest.fn();
+  const onClickSubmit = jest.fn();
   const children = "test";
 
   test("renders the Modal", () => {
     const { container } = render(
-      <Modal open={open} handleClose={onClickClose}>
+      <Modal
+        open={open}
+        handleClose={onClickClose}
+        handleSubmit={onClickSubmit}
+      >
         {children}
       </Modal>
     );
@@ -21,7 +26,11 @@ describe("Modal", () => {
 
   test("not renders the Modal", async () => {
     render(
-      <Modal open={false} handleClose={onClickClose}>
+      <Modal
+        open={false}
+        handleClose={onClickClose}
+        handleSubmit={onClickSubmit}
+      >
         {children}
       </Modal>
     );

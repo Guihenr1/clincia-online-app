@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 import Modal from "./Modal";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Button from "../Button/Button";
 
 export default {
@@ -13,6 +13,11 @@ export default {
 export const Template = (args: any) => {
   const [open, setOpen] = useState(true);
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("SUBMIT");
+  };
+
   return (
     <>
       <Button onClick={() => setOpen(true)}>OPEN</Button>
@@ -21,6 +26,7 @@ export const Template = (args: any) => {
         title="Test"
         open={open}
         handleClose={() => setOpen(false)}
+        handleSubmit={handleSubmit}
       />
     </>
   );

@@ -1,18 +1,64 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import useStyles from "./styles";
-import { Box } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Table from "../../components/Table/Table";
 import Button from "../../components/Button/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { getRequest, deleteRequest } from "../../api/axios";
+import { getRequest, deleteRequest, putRequest } from "../../api/axios";
 import Dialog from "../../components/Dialog/Dialog";
+import Modal from "../../components/Modal/Modal";
+import { states } from "../../constants/states";
 
-interface DoctorProps {}
+interface DoctorProps {
+  crm: string;
+  especialidade: string;
+  id: string;
+  nome: string;
+  ufCrm:
+    | "AC"
+    | "AL"
+    | "AP"
+    | "AM"
+    | "BA"
+    | "CE"
+    | "DF"
+    | "ES"
+    | "GO"
+    | "MA"
+    | "MT"
+    | "MS"
+    | "MG"
+    | "PA"
+    | "PB"
+    | "PR"
+    | "PE"
+    | "PI"
+    | "RJ"
+    | "RN"
+    | "RS"
+    | "RO"
+    | "RR"
+    | "SC"
+    | "SP"
+    | "SE"
+    | "TO";
+}
 
-const Doctor: FC<DoctorProps> = () => {
+const Doctor: FC = () => {
   const s = useStyles();
   const [rows, setRows] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [doctorData, setDoctorData] = useState<DoctorProps>();
 
   const fetchData = async () => {
     try {
@@ -26,6 +72,17 @@ const Doctor: FC<DoctorProps> = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await putRequest(`medico/update-medico/${doctorData?.id}`, doctorData);
+      fetchData();
+      setOpenModal(false);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -41,7 +98,8 @@ const Doctor: FC<DoctorProps> = () => {
         const [openConfirmation, setOpenConfirmation] = useState(false);
 
         const handleEditClick = () => {
-          console.log("Button clicked for row with id:", params.row.id);
+          setDoctorData(params.row);
+          setOpenModal(true);
         };
 
         const handleConfirmDelete = async () => {
@@ -57,6 +115,80 @@ const Doctor: FC<DoctorProps> = () => {
 
         return (
           <>
+            <Modal
+              open={openModal}
+              handleClose={() => setOpenModal(false)}
+              title="Edit Doctor"
+              handleSubmit={handleSubmit}
+            >
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Name"
+                    variant="outlined"
+                    value={doctorData?.nome}
+                    onChange={(e) =>
+                      setDoctorData({
+                        ...doctorData,
+                        nome: e.target.value,
+                      } as DoctorProps)
+                    }
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    type="number"
+                    label="CRM"
+                    variant="outlined"
+                    value={doctorData?.crm}
+                    onChange={(e) =>
+                      setDoctorData({
+                        ...doctorData,
+                        crm: String(e.target.value),
+                      } as DoctorProps)
+                    }
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Specialty"
+                    variant="outlined"
+                    value={doctorData?.especialidade}
+                    onChange={(e) =>
+                      setDoctorData({
+                        ...doctorData,
+                        especialidade: e.target.value,
+                      } as DoctorProps)
+                    }
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl fullWidth>
+                    <InputLabel id="select-state-crm">State CRM</InputLabel>
+                    <Select
+                      id="select-state-crm"
+                      label="State CRM"
+                      value={doctorData?.ufCrm}
+                      onChange={(e) =>
+                        setDoctorData({
+                          ...doctorData,
+                          ufCrm: e.target.value,
+                        } as DoctorProps)
+                      }
+                    >
+                      {states.map((state, i) => (
+                        <MenuItem key={i} value={state.acronym}>
+                          {state.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            </Modal>
             <Dialog
               title="Are you sure?"
               content="You won't be able to revert this"

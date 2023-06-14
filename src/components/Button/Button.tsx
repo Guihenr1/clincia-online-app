@@ -19,6 +19,7 @@ interface ButtonProps {
     | "error"
     | "info";
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: FC<ButtonProps> = ({
@@ -30,6 +31,7 @@ const Button: FC<ButtonProps> = ({
   title,
   color,
   className,
+  type,
 }) => {
   const s = useStyles();
 
@@ -58,6 +60,7 @@ const Button: FC<ButtonProps> = ({
           className={`${s.classes.button} ${className}`}
           title={title}
           color={color}
+          type={type}
         >
           {children}
         </ButtonMaterialUI>
@@ -73,6 +76,7 @@ Button.defaultProps = {
   title: "",
   color: "primary",
   className: "",
+  type: "button",
 };
 
 export default Button;

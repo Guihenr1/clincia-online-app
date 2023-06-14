@@ -1,4 +1,4 @@
-import { FC, ReactNode, MouseEvent } from "react";
+import { FC, ReactNode, MouseEvent, FormEvent } from "react";
 import useStyles from "./styles";
 import { Box, Modal as ModalMui, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,30 +9,39 @@ interface ModalProps {
   open: boolean;
   handleClose: () => void;
   title?: string;
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-const Modal: FC<ModalProps> = ({ children, open, handleClose, title }) => {
+const Modal: FC<ModalProps> = ({
+  children,
+  open,
+  handleClose,
+  title,
+  handleSubmit,
+}) => {
   const s = useStyles();
 
   return (
     <div>
       <ModalMui open={open} onClose={handleClose} data-testid="modal">
-        <Box className={s.classes.children}>
-          <Box className={s.classes.header}>
-            <Typography variant="h5">{title}</Typography>
-            <CloseIcon
-              onClick={handleClose}
-              className={s.classes.closeButton}
-            />
+        <form onSubmit={handleSubmit}>
+          <Box className={s.classes.children}>
+            <Box className={s.classes.header}>
+              <Typography variant="h5">{title}</Typography>
+              <CloseIcon
+                onClick={handleClose}
+                className={s.classes.closeButton}
+              />
+            </Box>
+            <Box className={s.classes.content}>{children}</Box>
+            <Box className={s.classes.bottom}>
+              <Button className={s.classes.cancel} color="warning">
+                Cancel
+              </Button>
+              <Button type="submit">Confirm</Button>
+            </Box>
           </Box>
-          <Box className={s.classes.content}>{children}</Box>
-          <Box className={s.classes.bottom}>
-            <Button className={s.classes.cancel} color="warning">
-              Cancel
-            </Button>
-            <Button>Confirm</Button>
-          </Box>
-        </Box>
+        </form>
       </ModalMui>
     </div>
   );
