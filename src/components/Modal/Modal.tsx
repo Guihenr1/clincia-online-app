@@ -35,7 +35,11 @@ const Modal: FC<ModalProps> = ({
             </Box>
             <Box className={s.classes.content}>{children}</Box>
             <Box className={s.classes.bottom}>
-              <Button className={s.classes.cancel} color="warning">
+              <Button
+                onClick={handleClose}
+                className={s.classes.cancel}
+                color="warning"
+              >
                 Cancel
               </Button>
               <Button type="submit">Confirm</Button>

@@ -1,59 +1,45 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, useState } from "react";
 import useStyles from "./styles";
 import { Box } from "@mui/material";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Doctor from "../Doctor/Doctor";
-import Patient from "../Patient/Patient";
-import Patner from "../Patner/Patner";
+import { Navigate, useNavigate, useOutlet } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
-interface BaseProps {
-  children: ReactNode;
-}
+interface BaseProps {}
 
-const Base: FC<BaseProps> = ({ children }) => {
+const Base: FC<BaseProps> = () => {
   const s = useStyles();
-  const [page, setPage] = useState("doctor");
+  const { user, logout } = useAuth();
+  const outlet = useOutlet();
+  const navigate = useNavigate();
 
-  const onClick = (page: string) => {
-    setPage(page);
-  };
+  if (!user) {
+    return <Navigate to="/" />;
+  }
 
-  const onClickLogout = () => {};
+  const onClickLogout = () => logout();
   const menu = [
     {
       text: "Doctor",
-      onClick: () => onClick("doctor"),
+      onClick: () => navigate("/"),
     },
     {
       text: "Patient",
-      onClick: () => onClick("patient"),
+      onClick: () => navigate("/patient"),
     },
     {
       text: "Patner",
-      onClick: () => onClick("patner"),
+      onClick: () => navigate("/patner"),
     },
   ];
-
-  const ReturnPage = (page: string) => {
-    switch (page) {
-      case "doctor":
-        return <Doctor />;
-      case "patient":
-        return <Patient />;
-      case "patner":
-        return <Patner />;
-      default:
-        return <Doctor />;
-    }
-  };
 
   return (
     <Box>
       <Box className={s.classes.header}>
         <Header menu={menu} handleClickLogout={onClickLogout} />
       </Box>
-      <Box className={s.classes.content}>{ReturnPage(page)}</Box>
+      <Box className={s.classes.content}>{outlet}</Box>
       <Box className={s.classes.footer}>
         <Footer />
       </Box>
@@ -61,8 +47,6 @@ const Base: FC<BaseProps> = ({ children }) => {
   );
 };
 
-Base.defaultProps = {
-  children: "",
-};
+Base.defaultProps = {};
 
 export default Base;
