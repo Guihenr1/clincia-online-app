@@ -6,6 +6,12 @@ const useStyles = makeStyles()(() => ({
     display: "flex",
     justifyContent: "end",
   },
+  alert: {
+    position: "fixed",
+    height: "100%",
+    marginTop: "548px",
+    zIndex: 999,
+  },
 }));
 
 export default useStyles;

@@ -19,3 +19,7 @@ export async function putRequest(URL: string, payload: any, headers: any) {
 export async function deleteRequest(URL: string, headers: any) {
   return await axiosClient.delete(`/${URL}`, { headers });
 }
+
+export async function patchRequest(URL: string, payload: any, headers: any) {
+  return await axiosClient.patch(`/${URL}`, payload, { headers });
+}

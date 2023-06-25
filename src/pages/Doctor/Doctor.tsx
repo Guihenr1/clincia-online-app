@@ -23,8 +23,9 @@ import {
 import Modal from "../../components/Modal/Modal";
 import { states } from "../../constants/states";
 import { useAuth } from "../../hooks/useAuth";
+import Alert from "../../components/Alert/Alert";
 
-interface DoctorProps {
+export interface DoctorProps {
   crm: string;
   especialidade: string;
   id: string;
@@ -73,6 +74,24 @@ const Doctor: FC = () => {
     ufCrm: "SP",
   });
   const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [alertSeverity, setAlertSeverity] = useState(
+    "success" as "success" | "error" | "warning" | "info" | undefined
+  );
+  const [alertText, setAlertText] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const configAlert = (
+    text: string,
+    alertSeverity: "success" | "error" | "warning" | "info" | undefined
+  ) => {
+    setAlertSeverity(alertSeverity);
+    setAlertText(text);
+    setOpenAlert(true);
+
+    setTimeout(() => {
+      setOpenAlert(false);
+    }, 5000);
+  };
 
   useEffect(() => {
     if (openModal && add) {
@@ -94,8 +113,11 @@ const Doctor: FC = () => {
     try {
       const doctors = await getRequest("medico/get-all", headers);
       setRows(doctors?.data);
-    } catch (error) {
-      console.log("ERROR", error);
+    } catch (error: any) {
+      configAlert(
+        error[0]?.response ?? "Ocorreu um erro consulte o administrador",
+        "error"
+      );
     }
   };
 
@@ -112,9 +134,11 @@ const Doctor: FC = () => {
       try {
         await postRequest(`medico/add-medico`, doctorData, headers);
         fetchData();
-        setOpenModal(false);
-      } catch (error) {
-        console.log("ERROR", error);
+      } catch (error: any) {
+        configAlert(
+          error[0]?.response ?? "Ocorreu um erro consulte o administrador",
+          "error"
+        );
       }
     } else {
       try {
@@ -124,11 +148,15 @@ const Doctor: FC = () => {
           headers
         );
         fetchData();
-        setOpenModal(false);
-      } catch (error) {
-        console.log("ERROR", error);
+      } catch (error: any) {
+        configAlert(
+          error[0]?.response ?? "Ocorreu um erro consulte o administrador",
+          "error"
+        );
       }
     }
+
+    setOpenModal(false);
   };
 
   const columns = [
@@ -148,7 +176,9 @@ const Doctor: FC = () => {
           setOpenModal(true);
         };
 
-        const handleConfirmDelete = async () => {
+        const handleConfirmDelete = async (e: FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+
           const headers = {
             Authorization: `Bearer ${user?.token}`,
           };
@@ -158,10 +188,14 @@ const Doctor: FC = () => {
               `medico/delete-medico/${params.row.id}`,
               headers
             );
-            setOpenModalDelete(false);
             fetchData();
-          } catch (error) {
-            console.log("ERROR", error);
+          } catch (error: any) {
+            configAlert(
+              error[0]?.response ?? "Ocorreu um erro consulte o administrador",
+              "error"
+            );
+          } finally {
+            setOpenModalDelete(false);
           }
         };
 
@@ -198,6 +232,12 @@ const Doctor: FC = () => {
 
   return (
     <>
+      <Alert
+        className={s.classes.alert}
+        open={openAlert}
+        children={alertText}
+        severity={alertSeverity}
+      />
       <Modal
         open={openModal}
         handleClose={() => setOpenModal(false)}
